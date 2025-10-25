@@ -62,7 +62,7 @@ You can also test the plugin directly without LiveKit:
 ```python
 from livekit_plugins_googlesr import GoogleSTT
 
-stt = GoogleSTT(language="en-US", api_key="YOUR_GOOGLE_SPEECH_API_KEY")
+stt = GoogleSTT(language="en-US")
 text = stt.transcribe("path/to/audio.wav")
 print(text)
 ```
