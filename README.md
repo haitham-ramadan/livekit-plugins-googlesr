@@ -1,18 +1,25 @@
-# LiveKit Google Speech Recognition (Googlesr) Plugin
+## 📖 Overview
 
-This is a custom Speech-to-Text (STT) plugin for the LiveKit Agents framework, utilizing the `SpeechRecognition` library to access the Google Speech Recognition API.
+**LiveKit-Plugins-Googlesr** is a custom **Speech-to-Text (STT)** plugin built for the  
+[LiveKit Agents](https://github.com/livekit/agents) framework.
 
-## Installation
+It integrates the **Google Speech Recognition** to provide accurate, real-time, multilingual transcription — including **Arabic (`ar-EG`)** — for your LiveKit voice agents.
 
-\`\`\`bash
+---
+
+## 🚀 Installation
+
+```
 pip install livekit-plugins-googlesr
-\`\`\`
+````
 
-## Usage
+---
 
-The plugin can be used in your LiveKit Agent session as follows:
+## 🧠 Usage Example
 
-\`\`\`python
+Use the plugin in your LiveKit Agent session:
+
+```python
 from livekit_plugins_googlesr import GoogleSTT
 from livekit.agents import AgentSession, inference
 
@@ -20,33 +27,76 @@ session = AgentSession(
     stt=GoogleSTT(language="ar-EG"),
     # ... other components (llm, tts, vad, turn_detection)
 )
-\`\`\`
+```
 
-You can optionally pass your Google API key to the constructor or set it as an environment variable:
 
-\`\`\`python
-# Using an API key
-session = AgentSession(
-    stt=GoogleSTT(language="ar-EG", api_key="YOUR_GOOGLE_SPEECH_API_KEY"),
-    # ...
-)
-\`\`\`
+## 🌍 Notes on Arabic Turn Detection (`ar-EG`)
 
-## Note on Turn Detection for Arabic (\`ar-EG\`)
+LiveKit’s **Multilingual Turn Detector** currently supports a subset of languages —
+**Arabic (`ar-EG`)** is not yet explicitly listed.
 
-The LiveKit Multilingual Turn Detector model currently supports a set of 14 languages, but **Arabic is not explicitly listed**.
+You might see this message:
 
-When you use a language like \`ar-EG\` (Arabic - Egyptian) with the \`MultilingualModel\`, you may receive a warning:
-
-\`\`\`
+```
 2025-10-25 16:59:28,265 - INFO livekit.agents - Turn detector does not support language ar-EG
-\`\`\`
+```
 
-This warning indicates that the turn detection model will fall back to a less language-specific mode, which may slightly reduce its accuracy for turn-taking in Arabic conversations. The STT itself (via Google Speech Recognition) will still function correctly in Arabic.
 
-To avoid this warning, you can:
-1. **Omit the \`turn_detection\` component** if you are comfortable relying solely on the VAD (Voice Activity Detection) endpointing.
-2. **Use the \`MultilingualModel\` and accept the warning**, knowing that the STT is working and the turn detection will use its best-effort, non-language-specific logic.
+Keep an eye on [LiveKit Docs](https://docs.livekit.io/) for future updates on multilingual support.
 
-For the best experience, keep an eye on the official LiveKit documentation for updates on multilingual turn detection support.
-\`\`\`
+---
+
+## 🧩 Features
+
+* ✅ Plug-and-Play integration with LiveKit Agents
+* 🌐 Supports 100+ languages via Google Speech API
+* ⚡ Real-time low-latency transcription
+* 🗣️ Native support for Arabic (`ar-EG`)
+
+---
+
+## 🧪 Quick Demo (Optional)
+
+You can also test the plugin directly without LiveKit:
+
+```python
+from livekit_plugins_googlesr import GoogleSTT
+
+stt = GoogleSTT(language="en-US", api_key="YOUR_GOOGLE_SPEECH_API_KEY")
+text = stt.transcribe("path/to/audio.wav")
+print(text)
+```
+
+---
+
+## 💡 Development & Contributing
+
+Want to improve the plugin? Clone and install it locally:
+
+```bash
+git clone https://github.com/haitham-ramadan/livekit-plugins-googlesr.git
+cd livekit-plugins-googlesr
+pip install -e .
+```
+
+Pull requests and issues are welcome!
+Please open an issue before submitting major changes.
+
+---
+
+## 🧾 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 👨‍💻 Author
+
+**Haitham Ramadan**
+💬 [GitHub](https://github.com/haitham-ramadan)
+
+---
+
+## ⭐ Support
+
+If you find this project useful, please ⭐ star the repo and share it with others!
